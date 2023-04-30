@@ -22,7 +22,7 @@ class Command(BaseCommand):
 
             ScrapeJobsList = ScrapeJob.objects.values_list('job_name', flat=True)
             print(len(ScrapeJobsList))
-            final_json = SCRAPE_ALL_JOB_RESULTS(ScrapeJobsList[:5], 1)
+            final_json = SCRAPE_ALL_JOB_RESULTS(ScrapeJobsList[:1], 1)
             print('POINT 1')
             temp_data = {}
             for key in final_json:
@@ -48,6 +48,7 @@ class Command(BaseCommand):
                     scrape_result.save()
                 except Exception as e:
                     print(f"An error occurred: {e}")
+                    raise e
 
             self.stdout.write(self.style.SUCCESS('ScrapeResult object reinitialized successfully'))
         except:
