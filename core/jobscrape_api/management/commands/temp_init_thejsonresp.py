@@ -2,6 +2,7 @@ import json
 from datetime import datetime
 from django.core.management.base import BaseCommand
 from jobscrape_api.models import ScrapeResult, ScrapeJob
+from core.settings import BASE_DIR
 
 class Command(BaseCommand):
     help = 'temporarily initializes the ScrapeResult object'
@@ -10,7 +11,7 @@ class Command(BaseCommand):
         try:
             ScrapeResult.objects.all().delete()
 
-            with open('./media/temp_json_response.json') as f:
+            with open(f'{BASE_DIR}/media/temp_json_response.json') as f:
                 data = json.load(f)
 
             for job_name in data.keys():

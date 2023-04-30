@@ -1,13 +1,14 @@
 import csv
 from django.core.management.base import BaseCommand
 from technicalquestions_api.models import QuizQuestion
+from core.settings import BASE_DIR
 
 class Command(BaseCommand):
     help = 'Loads technical quiz data from CSV file into database'
 
     def handle(self, *args, **kwargs):
         if QuizQuestion.objects.count() == 0:
-            with open('./media/csv/final_technical_q_dataset_finalized.csv') as csvfile:
+            with open(f'{BASE_DIR}/media/csv/final_technical_q_dataset_finalized.csv') as csvfile:
                 reader = csv.DictReader(csvfile)
 
                 # Loop through the rows and create new QuizQuestion objects

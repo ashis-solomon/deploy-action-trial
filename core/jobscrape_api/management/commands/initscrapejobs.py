@@ -1,13 +1,14 @@
 import csv
 from django.core.management.base import BaseCommand
 from jobscrape_api.models import ScrapeJob
+from core.settings import BASE_DIR
 
 class Command(BaseCommand):
     help = 'Loads job names data from CSV file into database'
 
     def handle(self, *args, **kwargs):
         if ScrapeJob.objects.count() == 0:
-            with open('./media/csv/scrapejobslist.csv') as csvfile:
+            with open(f'{BASE_DIR}/media/csv/scrapejobslist.csv') as csvfile:
                 reader = csv.DictReader(csvfile)
 
                 for row in reader:

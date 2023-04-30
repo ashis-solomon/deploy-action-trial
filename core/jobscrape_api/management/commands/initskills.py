@@ -1,13 +1,14 @@
 import csv
 from django.core.management.base import BaseCommand
 from jobscrape_api.models import JobLanguage, JobFramework, JobDatabase, JobSkill
+from core.settings import BASE_DIR
 
 class Command(BaseCommand):
     help = 'Loads job skills data from CSV file into database'
 
     def handle(self, *args, **kwargs):
         if JobLanguage.objects.count() == 0:
-            with open('./media/csv/languages.csv') as csvfile:
+            with open(f'{BASE_DIR}/media/csv/languages.csv') as csvfile:
                 reader = csv.DictReader(csvfile)
 
                 for row in reader:
@@ -24,7 +25,7 @@ class Command(BaseCommand):
 
 
         if JobFramework.objects.count() == 0:
-            with open('./media/csv/frameworks.csv') as csvfile:
+            with open(f'{BASE_DIR}/media/csv/frameworks.csv') as csvfile:
                 reader = csv.DictReader(csvfile)
 
                 for row in reader:
@@ -40,7 +41,7 @@ class Command(BaseCommand):
 
         
         if JobDatabase.objects.count() == 0:
-            with open('./media/csv/databases.csv') as csvfile:
+            with open(f'{BASE_DIR}/media/csv/databases.csv') as csvfile:
                 reader = csv.DictReader(csvfile)
 
                 for row in reader:
@@ -56,7 +57,7 @@ class Command(BaseCommand):
 
         
         if JobSkill.objects.count() == 0:
-            with open('./media/csv/skills.csv') as csvfile:
+            with open(f'{BASE_DIR}/media/csv/skills.csv') as csvfile:
                 reader = csv.DictReader(csvfile)
 
                 for row in reader:
