@@ -9,6 +9,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         try:
+            print(datetime.now().strftime("%H:%M:%S"))
             ScrapeResult.objects.all().delete()
 
             with open(f'{BASE_DIR}/media/temp_json_response.json') as f:
