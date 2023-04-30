@@ -51,13 +51,13 @@ def fetch_jobs(url):
     
     try:
         driver.find_element(By.XPATH,".//span[@class='SVGInline modal_closeIcon']").click()
-        time.sleep(3)
+        time.sleep(2)
     except NoSuchElementException:
         try:
             driver.find_element(By.XPATH, "//*[@id='JAModal']/div/div[2]/span/svg").click()
-            time.sleep(3)
+            time.sleep(2)
         except:
-            time.sleep(3)
+            time.sleep(2)
             pass
     
     done = False
@@ -65,14 +65,14 @@ def fetch_jobs(url):
         job_cards = driver.find_elements(By.XPATH,"//article[@id='MainCol']//ul/li[@data-adv-type='GENERAL']")
         for card in job_cards:
             card.click()
-            time.sleep(1.5)
+            time.sleep(1)
 
 #             Closes the signup prompt
             try:
                 driver.find_element(By.XPATH,".//span[@class='SVGInline modal_closeIcon']").click()
-                time.sleep(3)
+                time.sleep(2)
             except NoSuchElementException:
-                time.sleep(3)
+                time.sleep(2)
                 pass
 
             html_content.append(driver.page_source)

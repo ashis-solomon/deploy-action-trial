@@ -20,7 +20,7 @@ class Command(BaseCommand):
         try:
             print(datetime.now())
 
-            final_json = SCRAPE_ALL_JOB_RESULTS(ScrapeJobsList[7:8], 1)
+            final_json = SCRAPE_ALL_JOB_RESULTS(ScrapeJobsList, 2)
             print('POINT 1')
             temp_data = {}
             for key in final_json:
