@@ -50,3 +50,13 @@ ENSURE THAT THE CSV OF JOB NAMES is SAME as the list passed to the Management Co
 Need to rectify Github Action
 
 
+import json
+
+def remove_na_companylinks(json_data):
+    for key in json_data:
+        for job in json_data[key]:
+            if job['company_links'] == '#N/A':
+                json_data[key].remove(job)
+    return json_data
+
+
