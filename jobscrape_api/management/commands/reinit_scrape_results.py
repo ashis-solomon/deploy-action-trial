@@ -20,7 +20,7 @@ class Command(BaseCommand):
         try:
             print(datetime.now())
 
-            final_json = SCRAPE_ALL_JOB_RESULTS(ScrapeJobsList, 2)
+            final_json = SCRAPE_ALL_JOB_RESULTS(ScrapeJobsList[:2], 2)
             print('POINT 1')
             temp_data = {}
             for key in final_json:
@@ -35,7 +35,7 @@ class Command(BaseCommand):
             ScrapeResult.objects.all().delete()
             print('POINT 3')
 
-
+            print(final_json.keys())
             for job_name in final_json.keys():
                 print('POINT 4')
 
