@@ -5,13 +5,13 @@ from jobscrape_api.models import ScrapeResult, ScrapeJob
 from core.settings import BASE_DIR
 from jobscrape_api.scrape_utils import *
 
-ScrapeJobsList = ['React Developer', 'Data Analyst','Nodejs Developer', 'UI/UX Developer',\
-             'Django Developer', 'Flutter Developer', 'Java Developer',\
-             'Frontend Developer', 'Full-Stack Developer', 'DevOps Engineer',\
-             'Cloud Solutions Architect', 'Machine Learning Engineer',\
-             'Artificial Intelligence Specialist', 'Cybersecurity Analyst',\
-             'Network Engineer', 'Database Administrator', 'IT Support Specialist',\
-             'Python Developer', 'R&D Engineer']
+# ScrapeJobsList = ['React Developer', 'Data Analyst','Nodejs Developer', 'UI/UX Developer',\
+#              'Django Developer', 'Flutter Developer', 'Java Developer',\
+#              'Frontend Developer', 'Full-Stack Developer', 'DevOps Engineer',\
+#              'Cloud Solutions Architect', 'Machine Learning Engineer',\
+#              'Artificial Intelligence Specialist', 'Cybersecurity Analyst',\
+#              'Network Engineer', 'Database Administrator', 'IT Support Specialist',\
+#              'Python Developer', 'R&D Engineer']
 
 class Command(BaseCommand):
     help = 'Reinitializes the ScrapeResult object after scraping the latest job postings.'
@@ -20,7 +20,9 @@ class Command(BaseCommand):
         try:
             print(datetime.now())
 
-            final_json = SCRAPE_ALL_JOB_RESULTS(ScrapeJobsList[:2], 2)
+            ScrapeJobsList = ScrapeJob.objects.get(job_name)
+            print(len(ScrapeJobsList))
+            final_json = SCRAPE_ALL_JOB_RESULTS(ScrapeJobsList[:1], 1)
             print('POINT 1')
             temp_data = {}
             for key in final_json:
