@@ -2,7 +2,7 @@ name: trial-run
 
 on:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "0 * * * *"
   workflow_dispatch:
 
 jobs:
@@ -23,4 +23,4 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run Python script
-        run: python manage.py temp_init_thejsonresp
+        run: python manage.py reinit_scrape_results
