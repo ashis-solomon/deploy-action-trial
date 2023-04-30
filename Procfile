@@ -1,0 +1,1 @@
+web: python core/manage.py initdb && python core/manage.py collectstatic && gunicorn core/core.wsgi
