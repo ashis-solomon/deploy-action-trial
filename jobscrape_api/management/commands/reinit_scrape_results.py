@@ -20,7 +20,8 @@ class Command(BaseCommand):
         try:
             print(datetime.now())
 
-            final_json = SCRAPE_ALL_JOB_RESULTS(ScrapeJobsList[5:8], 1)
+            final_json = SCRAPE_ALL_JOB_RESULTS(ScrapeJobsList[7:8], 1)
+            print('POINT 1')
             temp_data = {}
             for key in final_json:
                     temp_data[key] = final_json[key]
@@ -29,15 +30,21 @@ class Command(BaseCommand):
                         
             final_json = temp_data
             final_json = remove_na_skills(final_json)
+            print('POINT 2')
             
             ScrapeResult.objects.all().delete()
+            print('POINT 3')
 
 
             for job_name in final_json.keys():
+                print('POINT 4')
+
                 scrape_job = ScrapeJob.objects.get(job_name=job_name)
                 json_resp = {job_name: final_json[job_name]}
                 scrape_result = ScrapeResult(job_name=scrape_job, json_resp=json_resp, date_created=datetime.now())
+                print('POINT 5')
                 scrape_result.save()
+
 
             self.stdout.write(self.style.SUCCESS('ScrapeResult object reinitialized successfully'))
         except:
