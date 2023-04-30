@@ -37,14 +37,15 @@ class Command(BaseCommand):
 
             print(final_json.keys())
             for job_name in final_json.keys():
-                print('POINT 4')
-
-                scrape_job = ScrapeJob.objects.get(job_name=job_name)
-                json_resp = {job_name: final_json[job_name]}
-                scrape_result = ScrapeResult(job_name=scrape_job, json_resp=json_resp, date_created=datetime.now())
-                print('POINT 5')
-                scrape_result.save()
-
+                try:
+                    print('POINT 4')
+                    scrape_job = ScrapeJob.objects.get(job_name=job_name)
+                    json_resp = {job_name: final_json[job_name]}
+                    print('POINT 5')
+                    scrape_result = ScrapeResult(job_name=scrape_job, json_resp=json_resp, date_created=datetime.now())
+                    scrape_result.save()
+                except Exception as e:
+                    print(f"An error occurred: {e}")
 
             self.stdout.write(self.style.SUCCESS('ScrapeResult object reinitialized successfully'))
         except:
