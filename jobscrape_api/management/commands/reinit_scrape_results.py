@@ -20,7 +20,7 @@ class Command(BaseCommand):
         try:
             print(datetime.now())
 
-            ScrapeJobsList = ScrapeJob.objects.get(job_name)
+            ScrapeJobsList = ScrapeJob.objects.values_list('job_name', flat=True)
             print(len(ScrapeJobsList))
             final_json = SCRAPE_ALL_JOB_RESULTS(ScrapeJobsList[:1], 1)
             print('POINT 1')
